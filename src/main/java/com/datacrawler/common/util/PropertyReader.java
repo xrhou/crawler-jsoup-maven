@@ -1,15 +1,18 @@
 /**
  * UtilsConstants.java
- *
+ * <p>
  * Function：parse properties file utility class / 解析properties文件工具类
- *
- *   ver     date           author
+ * <p>
+ * ver     date           author
  * ──────────────────────────────────
- *   1.0     2017/02/22     bluetata
- *
+ * 1.0     2017/02/22     bluetata
+ * <p>
  * Copyright (c) 2017, [https://github.com/] All Rights Reserved.
  */
 package com.datacrawler.common.util;
+
+import com.datacrawler.consts.SystemConstants;
+import com.datacrawler.consts.UtilsConstants;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,13 +25,9 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
-import com.datacrawler.consts.SystemConstants;
-import com.datacrawler.consts.UtilsConstants;
-
 /**
- * 
  * 功能描述:动态读取配置文件来加载属性
- * 
+ *
  * @author bluetata / dietime1943@gmail.com 2017/03/04
  * @author Name Date(YYYY/MM/dd)
  * @since crawler(datasnatch) version(1.0)
@@ -40,16 +39,12 @@ public class PropertyReader {
 
     private static Hashtable<String, Properties> pptContainer = new Hashtable<String, Properties>();
 
-    
-    
+
     /**
-     * 
      * 方法用途和描述: 获得属性
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
-     * @param key
-     *            属性键
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
+     * @param key              属性键
      * @return 属性值
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -61,17 +56,13 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 获得属性文件中Key所对应的值
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径或文件系统中文件路径)
-     * @param key
-     *            属性的键
-     * @param isAbsolutePath
-     *            是否为绝对路径:true|false〔即是本地文件系统路径，比如：C:/test.propreties〕<br>
-     *            <br>
-     *            <b>注：</b>不能通过类路径来获取到属性文件，而只知道属性文件的文件系统路径，即文件系统地址则用此方法来获取其中的Key所对应的Value
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径或文件系统中文件路径)
+     * @param key              属性的键
+     * @param isAbsolutePath   是否为绝对路径:true|false〔即是本地文件系统路径，比如：C:/test.propreties〕<br>
+     *                         <br>
+     *                         <b>注：</b>不能通过类路径来获取到属性文件，而只知道属性文件的文件系统路径，即文件系统地址则用此方法来获取其中的Key所对应的Value
      * @return key的属性值
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -86,18 +77,14 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 获得属性文件的属性
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
      * @return 属性
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
-     * 
      * @deprecated 新的替代方法{@link} getProperties()      2017/03/15
-     * 
      */
     @Deprecated
     public final static Properties _getProperties(String propertyFilePath) {
@@ -116,11 +103,9 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 获得属性文件的属性
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径及文件系统路径)
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径及文件系统路径)
      * @return 属性文件对象 Properties
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -142,11 +127,9 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 加载属性
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
      * @return 属性
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -168,11 +151,9 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 从文件系统加载属性文件
-     * 
-     * @param propertyFilePath
-     *            属性文件(文件系统的文件路径)
+     *
+     * @param propertyFilePath 属性文件(文件系统的文件路径)
      * @return 属性
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -193,40 +174,33 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 对存在的属性文件中添加键值对并保存
-     * 
-     * @param propertyFilePath
-     *            属性文件的路径(包括类路径及文件系统路径)
-     * @param htKeyValue
-     *            键值对Hashtable
+     *
+     * @param propertyFilePath 属性文件的路径(包括类路径及文件系统路径)
+     * @param htKeyValue       键值对Hashtable
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
      */
     public final static boolean setValueAndStore(String propertyFilePath,
-            java.util.Hashtable<String, String> htKeyValue) {
+                                                 java.util.Hashtable<String, String> htKeyValue) {
         return setValueAndStore(propertyFilePath, htKeyValue, null);
     }
 
     /**
-     * 
      * 方法用途和描述: 对存在的属性文件中添加键值对并保存
-     * 
-     * @param propertyFilePath
-     *            属性文件的路径(包括类路径及文件系统路径)
-     * @param htKeyValue
-     *            键值对Hashtable
-     * @param storeMsg
-     *            保存时添加的附加信息（注释）
+     *
+     * @param propertyFilePath 属性文件的路径(包括类路径及文件系统路径)
+     * @param htKeyValue       键值对Hashtable
+     * @param storeMsg         保存时添加的附加信息（注释）
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
      */
     public final static boolean setValueAndStore(String propertyFilePath,
-            java.util.Hashtable<String, String> htKeyValue, String storeMsg) {
+                                                 java.util.Hashtable<String, String> htKeyValue, String storeMsg) {
         Properties ppts = _getProperties(propertyFilePath);
 
         if (ppts == null || htKeyValue == null) {
@@ -270,20 +244,17 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 创建属性文件
-     * 
-     * @param propertyFilePath
-     *            要存储属性文件的路径
-     * @param htKeyValue
-     *            属性文件中的键值对Hashtable
+     *
+     * @param propertyFilePath 要存储属性文件的路径
+     * @param htKeyValue       属性文件中的键值对Hashtable
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
      */
     public final static boolean createPropertiesFile(String propertyFilePath,
-            java.util.Hashtable<String, String> htKeyValue) {
+                                                     java.util.Hashtable<String, String> htKeyValue) {
         java.io.File file = new java.io.File(propertyFilePath);
         if (!file.exists()) {
             try {
@@ -296,15 +267,11 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述:设置属性值
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
-     * @param key
-     *            属性键
-     * @param value
-     *            属性值
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
+     * @param key              属性键
+     * @param value            属性值
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -320,15 +287,11 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 保存属性文件对象
-     * 
-     * @param properties
-     *            属性文件对象
-     * @param propertyFilePath
-     *            要保存的路径
-     * @param msg
-     *            保存时添加的附加信息（注释）
+     *
+     * @param properties       属性文件对象
+     * @param propertyFilePath 要保存的路径
+     * @param msg              保存时添加的附加信息（注释）
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
@@ -346,13 +309,10 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 删除属性值
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
-     * @param key
-     *            属性键
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
+     * @param key              属性键
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -368,13 +328,10 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 删除属性文件中的Key数组所对应的键值对
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径及文件系统路径)
-     * @param key
-     *            key数组
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径及文件系统路径)
+     * @param key              key数组
      * @return 属性文件对象
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -396,14 +353,10 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述:删除属性文件中的Key数组所对应的键值对，并将属性文件对象持久化（即保存）
-     * 
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径及文件系统路径)
-     * @param key
-     *            属性文件中的key数组
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径及文件系统路径)
+     * @param key              属性文件中的key数组
      * @return 成功与否（true|false）
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -419,15 +372,11 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 更新指定路径的属性文件中的键所对应的值
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径及文件系统路径)
-     * @param key
-     *            属性文件中的key
-     * @param newValue
-     *            要更新的新值
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径及文件系统路径)
+     * @param key              属性文件中的key
+     * @param newValue         要更新的新值
      * @return 成功与否（true|false）
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -444,20 +393,17 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 批量更新指定路径的属性文件中的键所对应的值
-     * 
-     * @param propertyFilePath
-     *            属性文件路径(包括类路径及文件系统路径)
-     * @param htKeyValue
-     *            要更新的键值对Hashtable
+     *
+     * @param propertyFilePath 属性文件路径(包括类路径及文件系统路径)
+     * @param htKeyValue       要更新的键值对Hashtable
      * @return 成功与否（true|false）
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
      */
     public final static boolean batchUpdateValue(String propertyFilePath,
-            java.util.Hashtable<String, String> htKeyValue) {
+                                                 java.util.Hashtable<String, String> htKeyValue) {
         if (propertyFilePath == null || htKeyValue == null) {
             return false;
         }
@@ -465,11 +411,9 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 移除加载的属性文件
-     * 
-     * @param propertyFilePath
-     *            属性文件(包括类路径)
+     *
+     * @param propertyFilePath 属性文件(包括类路径)
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -481,11 +425,9 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 重新加载某个Property文件
-     * 
-     * @param propertyFilePath
-     *            要重新加载的Property文件，如果当前内存中没有的话则加载，否则替换
+     *
+     * @param propertyFilePath 要重新加载的Property文件，如果当前内存中没有的话则加载，否则替换
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
@@ -496,13 +438,10 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * 方法用途和描述: 获得属性文件的路径
-     * 
-     * @param pkg
-     *            包名
-     * @param propertyFileName
-     *            属性文件名
+     *
+     * @param pkg              包名
+     * @param propertyFileName 属性文件名
      * @return
      * @author bluetata / dietime1943@hotmail.com 2017/03/04
      * @author Name Date(YYYY/MM/dd)
@@ -532,19 +471,15 @@ public class PropertyReader {
     }
 
     /**
-     * 
      * The method <code> getProperties </code> Loads the given property file by
      * searching the CLASSPATH or java.class.path system property value and
      * returns the Properties object.
-     * 
-     * @param propertyFileName
-     *            Name of the property file.
+     *
+     * @param propertyFileName Name of the property file.
      * @return Returns Properties object containing the contents of the
-     *         specified Properties file.
-     * @throws java.io.FileNotFoundException
-     *             Thrown if the given property file could not found in the
-     *             CLASSPATH.
-     * 
+     * specified Properties file.
+     * @throws java.io.FileNotFoundException Thrown if the given property file could not found in the
+     *                                       CLASSPATH.
      * @author bluetata / dietime1943@hotmail.com 2017/03/14
      * @author Name Date(YYYY/MM/dd)
      * @since datasnatch(crawler) version(1.0)
@@ -558,20 +493,20 @@ public class PropertyReader {
             if (StringUtil.isEmpty(propertyFileName)) {
                 throw new IllegalArgumentException(propertyFileName + " not found");
             }
-            
+
             // PROPS_SUFFIX :.properties
             String suffix = UtilsConstants.PROPS_SUFFIX;
             if (propertyFileName.lastIndexOf(suffix) == -1) {
                 propertyFileName += suffix;
             }
-            
+
             // String configPath = System.getProperty("configPath");
             // File file = new File(configPath + SystemConstants.FILE_SEPARATOR + propertyFileName);
             // is = new FileInputStream(FileHelpers.getFile(propertyFileName));
             // is = this.getClass().getClassLoader().getResourceAsStream(configPath + File.separator + propertyFileName);
             is = Thread.currentThread().getContextClassLoader()
                     .getResourceAsStream(File.separator + propertyFileName);
-            
+
             // load properties
             if (is != null) {
                 props = new Properties();
@@ -591,11 +526,11 @@ public class PropertyReader {
         }
         return props;
     }
-    
+
     /**
      * 方法用途和描述: 得到所有的配置信息
-     * @param properties
-     *          属性文件对象
+     *
+     * @param properties 属性文件对象
      * @return map 含有属性文件中的key和value的map
      * @author bluetata / dietime1943@hotmail.com 2017/03/14
      * @author Name Date(YYYY/MM/dd)

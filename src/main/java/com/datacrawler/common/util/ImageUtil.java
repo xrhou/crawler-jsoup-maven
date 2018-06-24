@@ -1,12 +1,12 @@
 /**
  * ImageUtil.java
- *
+ * <p>
  * Function：operation of images utility class.
- *
- *   ver     date           author
+ * <p>
+ * ver     date           author
  * ──────────────────────────────────
- *   1.0     2018/03/20     bluetata
- *
+ * 1.0     2018/03/20     bluetata
+ * <p>
  * Copyright (c) 2018, [https://github.com/bluetata] All Rights Reserved.
  */
 package com.datacrawler.common.util;
@@ -25,13 +25,10 @@ public class ImageUtil {
 
     /**
      * 下载文件到本地
-     * 
-     * @param urlString
-     *            被下载的文件地址
-     * @param filename
-     *            本地文件名
-     * @throws Exception
-     *             各种异常
+     *
+     * @param urlString 被下载的文件地址
+     * @param filename  本地文件名
+     * @throws Exception 各种异常
      */
     public static void downImages(String urlString, String filename) throws Exception {
         // 构造URL

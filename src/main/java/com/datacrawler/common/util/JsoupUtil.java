@@ -1,15 +1,23 @@
 /**
  * JsoupUtil.java
- *
+ * <p>
  * Function：Jsoup utility class.
- *
- *   ver     date           author
+ * <p>
+ * ver     date           author
  * ──────────────────────────────────
- *   1.0     2017/02/22     bluetata
- *
+ * 1.0     2017/02/22     bluetata
+ * <p>
  * Copyright (c) 2017, [https://github.com/] All Rights Reserved.
  */
 package com.datacrawler.common.util;
+
+import com.datacrawler.consts.SystemConstants;
+import com.datacrawler.consts.UtilsConstants;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,36 +25,26 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import com.datacrawler.consts.SystemConstants;
-import com.datacrawler.consts.UtilsConstants;
-
 /**
  * En:Utils class to parse website html by <code>Jsoup</code></br>
  * Jp:ウェブサイトを解析する用ユーティリティクラス</br>
  * Zh:Jsoup模拟浏览器解析网页工具类</br>
- * 
- * @since crawler(datasnatch) version(1.0)</br>
+ *
  * @author bluetata / dietime1943@gmail.com</br>
- * @version 1.0</br>
- * 
+ * @version 1.0</       br>
+ * <p>
  * 重构代码：提取getDocument方法,并增加三类方法：getDocumentWithHeaders,
  * getDocumentWithData和getDocumentWithCookies以满足在get提交中对不同数据绑定的提交       bluetata 2017/03/22
- * 
+ * @since crawler(datasnatch) version(1.0)</br>
  */
 public final class JsoupUtil {
-    
+
     private JsoupUtil() {
     }
 
     /**
      * 方法说明：模拟浏览器,以String形式返回被访问的url的源码。
-     * 
+     *
      * @param url 被访问的website. 所传的URL必须以 "http://www."开头
      * @return _html 以Stirng类型返回被访问网页的html.如果doc为null的情况方法返回空串""。
      * @throws Exception
@@ -55,7 +53,7 @@ public final class JsoupUtil {
 
         String _html = "";
         Document doc = getDocument(url);
-        
+
         if (doc != null) {
             _html = doc.toString().replaceAll(UtilsConstants.AMP, UtilsConstants.AMPERSAND);
         }
@@ -65,7 +63,7 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：将document对象转换成String类型
-     * 
+     *
      * @param doc 所要转换的document对象
      * @return _html 以Stirng类型返回被访问网页的html.如果doc为null的情况方法返回空串""。
      * @throws Exception
@@ -76,8 +74,8 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：get document by override method which is <code>getDocument</code>
-     * 
-     * @param url  visit link
+     *
+     * @param url visit link
      * @return Document  doc object
      * @throws Exception
      */
@@ -87,10 +85,10 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定单header模拟浏览器,返回document对象
-     * 
-     * @param url           被访问url
-     * @param headerKey     header的key
-     * @param headerValue   header的value
+     *
+     * @param url         被访问url
+     * @param headerKey   header的key
+     * @param headerValue header的value
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -100,7 +98,7 @@ public final class JsoupUtil {
 
         if (StringUtil.isEmpty(headerKey) && StringUtil.isEmpty(headerValue)) {
             doc = getDocument(url);
-        } else if (!StringUtil.isEmpty(headerKey) && !StringUtil.isEmpty(headerValue)){
+        } else if (!StringUtil.isEmpty(headerKey) && !StringUtil.isEmpty(headerValue)) {
             Map<String, String> requestHeader = new HashMap<String, String>();
             requestHeader.put(headerKey, headerValue);
             doc = getDocumentWithHeaders(url, requestHeader);
@@ -113,9 +111,9 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定header集合模拟浏览器,返回document对象
-     * 
-     * @param url           被访问url
-     * @param headersMap    绑定header的map集合
+     *
+     * @param url        被访问url
+     * @param headersMap 绑定header的map集合
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -131,10 +129,10 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定单data（parameter）模拟浏览器,并返回document对象
-     * 
-     * @param url           被访问的url
-     * @param dataKey       parameter的key
-     * @param dataValue     parameter的value
+     *
+     * @param url       被访问的url
+     * @param dataKey   parameter的key
+     * @param dataValue parameter的value
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -144,7 +142,7 @@ public final class JsoupUtil {
 
         if (StringUtil.isEmpty(dataKey) && StringUtil.isEmpty(dataValue)) {
             doc = getDocument(url);
-        } else if (!StringUtil.isEmpty(dataKey) && !StringUtil.isEmpty(dataValue)){
+        } else if (!StringUtil.isEmpty(dataKey) && !StringUtil.isEmpty(dataValue)) {
             Map<String, String> dataMap = new HashMap<String, String>();
             dataMap.put(dataKey, dataValue);
             doc = getDocumentWithData(url, dataMap);
@@ -157,9 +155,9 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定data（parameters）集合模拟浏览器,并返回document对象
-     * 
-     * @param url           被访问的url
-     * @param dataMap       parameters的map集合
+     *
+     * @param url     被访问的url
+     * @param dataMap parameters的map集合
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -175,10 +173,10 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定单cookie模拟浏览器,返回document对象
-     * 
-     * @param url           被访问url
-     * @param cookieKey     绑定cookie的key
-     * @param cookieValue   绑定cookie的value
+     *
+     * @param url         被访问url
+     * @param cookieKey   绑定cookie的key
+     * @param cookieValue 绑定cookie的value
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -188,7 +186,7 @@ public final class JsoupUtil {
 
         if (StringUtil.isEmpty(cookieKey) && StringUtil.isEmpty(cookieValue)) {
             doc = getDocument(url);
-        } else if (!StringUtil.isEmpty(cookieKey) && !StringUtil.isEmpty(cookieValue)){
+        } else if (!StringUtil.isEmpty(cookieKey) && !StringUtil.isEmpty(cookieValue)) {
             Map<String, String> cookiesMap = new HashMap<String, String>();
             cookiesMap.put(cookieKey, cookieValue);
             doc = getDocumentWithCookies(url, cookiesMap);
@@ -201,9 +199,9 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：绑定cookies集合模拟浏览器,并返回document对象
-     * 
-     * @param url           被访问的url
-     * @param cookiesMap    绑定cookies的map集合
+     *
+     * @param url        被访问的url
+     * @param cookiesMap 绑定cookies的map集合
      * @return Document     返回document对象
      * @throws Exception
      */
@@ -219,12 +217,12 @@ public final class JsoupUtil {
 
     /**
      * 方法说明：根据绑定的数据type选择绑定数据种类模拟浏览器
-     * 
-     * @param url           request url
-     * @param bindData      bind data
-     * @param requestType   request type: "headers" "data" "cookies" etc.
-     * @return              Document object.
-     * @throws Exception    Exception
+     *
+     * @param url         request url
+     * @param bindData    bind data
+     * @param requestType request type: "headers" "data" "cookies" etc.
+     * @return Document object.
+     * @throws Exception Exception
      */
     public static Document getDocument(String url, Map<String, String> bindData, String requestType) throws Exception {
 
@@ -240,7 +238,7 @@ public final class JsoupUtil {
         // En: get sleep time from properties file Jp:プロパティファイルでロックタイムアウトのスリープ時間を取得する
         int sleepTime = Integer.parseInt(PropertyReader.getProperties(SystemConstants.COM_CONSTANTS)
                 .getProperty(UtilsConstants.SLEEP_TIME_COUNT));
-        
+
         int temp = 0;
 
         // En: if exception is occurred then retry loop is continue to run;
@@ -253,27 +251,27 @@ public final class JsoupUtil {
                 }
                 temp = Integer.parseInt(Math.round(Math.random() * (UserAgent.length - 1)) + "");
                 conn = Jsoup.connect(url).timeout(10000)
-                       // .userAgent(
-                                // add userAgent. TODO There is a plan to configure userAgent to load that userAgent from a property file.
-                         //       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30");
+                        // .userAgent(
+                        // add userAgent. TODO There is a plan to configure userAgent to load that userAgent from a property file.
+                        //       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30");
                         .userAgent(UserAgent[temp]);
                 if (bindData != null && bindData.size() != 0 && !StringUtil.isEmpty(requestType)) {
                     switch (requestType) {
-                    case UtilsConstants.REQUEST_HEADERS:
-                        // adds each of the supplied headers to the request. // bluetata 2017/03/22 add
-                        conn.headers(bindData);
-                        break;
-                    case UtilsConstants.REQUEST_DATA:
-                        // adds all of the supplied data to the request data parameters. // 20170320 bluetata add
-                        conn.data(bindData);
-                        break;
-                    case UtilsConstants.REQUEST_COOKIES:
-                        // adds each of the supplied cookies to the request. // bluetata 2017/03/22 add
-                        conn.cookies(bindData);
-                        break;
-                    default:
-                        // TODO stream etc. logic is adding. bluetata 2017/03/22 add
-                        break;
+                        case UtilsConstants.REQUEST_HEADERS:
+                            // adds each of the supplied headers to the request. // bluetata 2017/03/22 add
+                            conn.headers(bindData);
+                            break;
+                        case UtilsConstants.REQUEST_DATA:
+                            // adds all of the supplied data to the request data parameters. // 20170320 bluetata add
+                            conn.data(bindData);
+                            break;
+                        case UtilsConstants.REQUEST_COOKIES:
+                            // adds each of the supplied cookies to the request. // bluetata 2017/03/22 add
+                            conn.cookies(bindData);
+                            break;
+                        default:
+                            // TODO stream etc. logic is adding. bluetata 2017/03/22 add
+                            break;
                     }
                 }
                 doc = conn.get();
@@ -308,12 +306,12 @@ public final class JsoupUtil {
         }
         return doc;
     }
-    
-    
+
+
     /**
      * 解析HTML获取字符编码
-     * @param doc
-     *          Dcoument 对象
+     *
+     * @param doc Dcoument 对象
      * @return
      * @throws Exception
      */
@@ -347,26 +345,25 @@ public final class JsoupUtil {
      * @return 苹果浏览器
      */
     public static String[] UserAgent = {
-            
-        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1290.1 Safari/537.13",
-        "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0",
-        "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; LBBROWSER)",
-        "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)",
-        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 Safari/535.12",
-        "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
-        "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.12",
-        "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 6.1; WOW64; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
-        "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
-        "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
-        "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; qihu theworld)",
-        "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; QQBrowser/7.0.4350.400)",
-        "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.6 Safari/534.57.2"
+
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1290.1 Safari/537.13",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0",
+            "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; LBBROWSER)",
+            "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 Safari/535.12",
+            "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+            "Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.12",
+            "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 6.1; WOW64; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+            "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+            "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+            "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; qihu theworld)",
+            "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; QQBrowser/7.0.4350.400)",
+            "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.6 Safari/534.57.2"
     };
-    
+
     public static String[] BrowserType = {"谷歌浏览器", "火狐浏览器", "猎豹浏览器", "360浏览器", "傲游浏览器", "腾讯TT浏览器", "Opera浏览器", "IE6浏览器", "IE8浏览器", "IE9浏览器", "世界之窗浏览器", "腾讯QQ浏览器", "苹果浏览器"};
-    
-    
-    
+
+
     // post 提交--------------------------------------
 
 }
